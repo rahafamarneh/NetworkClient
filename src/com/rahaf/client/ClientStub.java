@@ -10,7 +10,7 @@ public class ClientStub {
         mDBController = new DBController();
     }
     public void makeAdd(int x, int y) throws Exception{
-        String funName = "Add";
+        String funName = "add";
 
         //generate add-operation request
         JSONObject jsonObjectRequest = new JSONObject();

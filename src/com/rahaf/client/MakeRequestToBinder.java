@@ -23,9 +23,13 @@ public class MakeRequestToBinder extends Thread{
             Socket socket = new Socket("localhost",4000); // connect to binder
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintStream writer = new PrintStream(socket.getOutputStream());
-            writer.println("getServer " + functionName);
+
+            JSONObject jsonObjectRequest = new JSONObject();
+            jsonObjectRequest.put("fun",functionName);
+            writer.println(jsonObjectRequest.toString());
             String line;
             if ( (line= reader.readLine())!= null){
+                System.out.println("receive from binder: " + line);
                 JSONObject jsonObject = new JSONObject(line);
                 if(jsonObject.getString("status").equals("found")){
                     String serverIp = jsonObject.getString("serverIp");
