@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DBController {
-    Map<String,ServerModel> serverMap = new HashMap<>();
+    static Map<String,ServerModel> serverMap = new HashMap<>();
     public ServerModel getServerFromDatabase(String fun){
         return serverMap.getOrDefault(fun,null);
     }

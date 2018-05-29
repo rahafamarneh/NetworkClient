@@ -6,7 +6,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
-import java.net.URI;
 
 public class MakeRequestToBinder extends Thread{
     private String functionName;
@@ -20,7 +19,7 @@ public class MakeRequestToBinder extends Thread{
     @Override
     public void run() {
         try {
-            Socket socket = new Socket("localhost",4000); // connect to binder
+            Socket socket = new Socket("192.168.1.106",4000); // connect to binder
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintStream writer = new PrintStream(socket.getOutputStream());
 
