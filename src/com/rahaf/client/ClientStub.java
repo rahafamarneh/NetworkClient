@@ -1,6 +1,5 @@
 package com.rahaf.client;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ClientStub {
@@ -8,7 +7,6 @@ public class ClientStub {
     private DBController mDBController;
 
     public ClientStub() {
-
         mDBController = new DBController();
     }
     public void makeAdd(int x, int y, ReturnValue mListener) throws Exception{
@@ -28,6 +26,7 @@ public class ClientStub {
     public void findFactorial(int n, ReturnValue mListener) throws Exception{
         String funName = "fact";
 
+        //generate factorial-operation request
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("fun",funName);
         jsonObject.put("n1",n);
@@ -47,6 +46,7 @@ public class ClientStub {
 
                 }else{
                     System.out.println("Couldn't found a Server");
+                    mListener.onReturnValue(null);
                 }
             }).start();
         }else {
@@ -57,12 +57,10 @@ public class ClientStub {
 
     private void connectToServer(String requestString, ServerModel server, ReturnValue mListener) {
         new MakeRequestToServer(requestString,server, response -> {
-            if(requestString != null){
+            if(response != null){
                 System.out.println("Response from server = "+response);
 
                     mListener.onReturnValue(response);
-
-
 
             }else { // some error
                 System.out.println("server error");

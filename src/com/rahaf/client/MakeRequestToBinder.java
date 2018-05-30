@@ -19,7 +19,7 @@ public class MakeRequestToBinder extends Thread{
     @Override
     public void run() {
         try {
-            Socket socket = new Socket("192.168.1.106",4000); // connect to binder
+            Socket socket = new Socket("169.254.11.48",4000); // connect to binder
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintStream writer = new PrintStream(socket.getOutputStream());
 
@@ -40,6 +40,8 @@ public class MakeRequestToBinder extends Thread{
 
 
             }
+
+            socket.close();
 
 
 
